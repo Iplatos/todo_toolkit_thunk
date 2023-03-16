@@ -1,4 +1,4 @@
-import {addTaskAC, fetchTasksTC, removeTaskTC, tasksReducer, TasksStateType, updateTaskAC} from './tasks-reducer'
+import {addTaskTC, fetchTasksTC, removeTaskTC, tasksReducer, TasksStateType, updateTaskAC} from './tasks-reducer'
 import {addTodolistAC, removeTodolistAC, setTodolistsAC} from './todolists-reducer'
 import {TaskPriorities, TaskStatuses} from '../../api/todolists-api'
 
@@ -60,7 +60,7 @@ test('correct task should be added to correct array', () => {
         startDate: '',
         id: 'id exists'
     }
-    const action = addTaskAC(task)
+    const action = addTaskTC.fulfilled(task,{task},)
 
     const endState = tasksReducer(startState, action)
 
