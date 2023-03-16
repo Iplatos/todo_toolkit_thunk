@@ -6,8 +6,8 @@ import {
     TasksStateType,
     updateTaskTC
 } from './tasks-reducer'
-import {addTodolistAC, removeTodolistAC, setTodolistsAC} from './todolists-reducer'
-import {TaskPriorities, TaskStatuses} from '../../api/todolists-api'
+import {addTodolistTC, fetchTodolistsTC, removeTodolistTC} from './todolists-reducer'
+import {TaskPriorities, TaskStatuses, todolistsAPI} from '../../api/todolists-api'
 
 let startState: TasksStateType = {}
 beforeEach(() => {
@@ -67,7 +67,7 @@ test('correct task should be added to correct array', () => {
         startDate: '',
         id: 'id exists'
     }
-    const action = addTaskTC.fulfilled(task,"",task)
+    const action = addTaskTC.fulfilled(task,"", {title:"title",todolistId:"as"})
 
     const endState = tasksReducer(startState, action)
 
@@ -97,12 +97,16 @@ test('title of specified task should be changed', () => {
     expect(endState['todolistId2'][0].title).toBe('bread')
 })
 test('new array should be added when new todolist is added', () => {
-    const action = addTodolistAC({todolist: {
+    const payload ={
+        todolist:
+    {
         id: 'blabla',
-        title: 'new todolist',
+            title: 'new todolist',
         order: 0,
         addedDate: ''
-    }})
+    }
+    };
+    const action = addTodolistTC.fulfilled(payload, "" ,payload.todolist.title )
 
     const endState = tasksReducer(startState, action)
 
@@ -117,7 +121,7 @@ test('new array should be added when new todolist is added', () => {
     expect(endState[newKey]).toEqual([])
 })
 test('propertry with todolistId should be deleted', () => {
-    const action = removeTodolistAC({id: 'todolistId2'})
+    const action = removeTodolistTC.fulfilled({id: 'todolistId2'}, " ", 'todolistId2' )
 
     const endState = tasksReducer(startState, action)
 
@@ -128,10 +132,10 @@ test('propertry with todolistId should be deleted', () => {
 })
 
 test('empty arrays should be added when we set todolists', () => {
-    const action = setTodolistsAC({todolists: [
+    const action = fetchTodolistsTC.fulfilled({todolists: [
         {id: '1', title: 'title 1', order: 0, addedDate: ''},
         {id: '2', title: 'title 2', order: 0, addedDate: ''}
-    ]})
+    ]}, " ",)
 
     const endState = tasksReducer({}, action)
 
