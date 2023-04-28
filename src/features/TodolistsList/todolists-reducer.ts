@@ -26,9 +26,7 @@ export const removeTodolistTC = createAsyncThunk("todolist/removeTodolist", asyn
     dispatch,
     rejectWithValue
 }) => {
-    //изменим глобальный статус приложения, чтобы вверху полоса побежала
     dispatch(setAppStatusAC({status: 'loading'}))
-    //изменим статус конкретного тудулиста, чтобы он мог задизеблить что надо
     dispatch(changeTodolistEntityStatusAC({id: todolistId, status: 'loading'}))
 
     try {
@@ -42,30 +40,36 @@ export const removeTodolistTC = createAsyncThunk("todolist/removeTodolist", asyn
     }
 })
 
-export const addTodolistTC = createAsyncThunk("todolist/addTodolist", async (title: string, {dispatch,rejectWithValue}) => {
+export const addTodolistTC = createAsyncThunk("todolist/addTodolist", async (title: string, {
+    dispatch,
+    rejectWithValue
+}) => {
     dispatch(setAppStatusAC({status: 'loading'}))
     try {
         const res = await todolistsAPI.createTodolist(title)
 
-        return{todolist: res.data.data.item}
+        return {todolist: res.data.data.item}
     } catch (error) {
         handleServerNetworkError(error, dispatch)
         return rejectWithValue(null)
-    }finally {
+    } finally {
         dispatch(setAppStatusAC({status: 'succeeded'}))
     }
 })
-export const changeTodolistTitleTC =createAsyncThunk("todolist/changeTodolisTitle",(param:{id: string, title: string}, {dispatch,rejectWithValue}) => {
+export const changeTodolistTitleTC = createAsyncThunk("todolist/changeTodolisTitle", (param: { id: string, title: string }, {
+    dispatch,
+    rejectWithValue
+}) => {
     dispatch(setAppStatusAC({status: 'loading'}))
-       try{
-         const res =  todolistsAPI.updateTodolist(param.id, param.title)
-         return {id: param.id, title:param.title}
-       }catch (error){
-           handleServerNetworkError(error, dispatch)
-           return rejectWithValue(null)
-       }finally {
-           dispatch(setAppStatusAC({status: 'succeeded'}))
-       }
+    try {
+        const res = todolistsAPI.updateTodolist(param.id, param.title)
+        return {id: param.id, title: param.title}
+    } catch (error) {
+        handleServerNetworkError(error, dispatch)
+        return rejectWithValue(null)
+    } finally {
+        dispatch(setAppStatusAC({status: 'succeeded'}))
+    }
 
 })
 
@@ -95,12 +99,13 @@ const slice = createSlice({
         });
         builder.addCase(addTodolistTC.fulfilled, (state, action) => {
             state.unshift({...action.payload.todolist, filter: 'all', entityStatus: 'idle'})
-    });
-        builder.addCase(changeTodolistTitleTC.fulfilled,(state,action)=>{
+        });
+        builder.addCase(changeTodolistTitleTC.fulfilled, (state, action) => {
             const index = state.findIndex(tl => tl.id === action.payload.id);
             state[index].title = action.payload.title;
         })
-}})
+    }
+})
 
 export const todolistsReducer = slice.reducer
 export const {
