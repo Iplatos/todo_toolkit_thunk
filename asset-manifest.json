@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/todo_toolkit_thunk/static/css/main.6da83bb5.chunk.css",
+    "main.js": "/todo_toolkit_thunk/static/js/main.c5f65ddc.chunk.js",
+    "main.js.map": "/todo_toolkit_thunk/static/js/main.c5f65ddc.chunk.js.map",
+    "runtime-main.js": "/todo_toolkit_thunk/static/js/runtime-main.2cd352af.js",
+    "runtime-main.js.map": "/todo_toolkit_thunk/static/js/runtime-main.2cd352af.js.map",
+    "static/js/2.4a6d0ca1.chunk.js": "/todo_toolkit_thunk/static/js/2.4a6d0ca1.chunk.js",
+    "static/js/2.4a6d0ca1.chunk.js.map": "/todo_toolkit_thunk/static/js/2.4a6d0ca1.chunk.js.map",
+    "index.html": "/todo_toolkit_thunk/index.html",
+    "precache-manifest.5c3adadbdb875ac259e0250b485da29a.js": "/todo_toolkit_thunk/precache-manifest.5c3adadbdb875ac259e0250b485da29a.js",
+    "service-worker.js": "/todo_toolkit_thunk/service-worker.js",
+    "static/css/main.6da83bb5.chunk.css.map": "/todo_toolkit_thunk/static/css/main.6da83bb5.chunk.css.map",
+    "static/js/2.4a6d0ca1.chunk.js.LICENSE.txt": "/todo_toolkit_thunk/static/js/2.4a6d0ca1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2cd352af.js",
+    "static/js/2.4a6d0ca1.chunk.js",
+    "static/css/main.6da83bb5.chunk.css",
+    "static/js/main.c5f65ddc.chunk.js"
+  ]
+}
