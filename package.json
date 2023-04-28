@@ -2,6 +2,7 @@
   "name": "it-incubator-todolist-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://iplatos.github.io/todo_toolkit_thunk",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -17,8 +18,11 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/uuid": "^7.0.3",
+    "add": "^2.0.6",
     "axios": "^0.19.2",
     "formik": "^2.1.5",
+    "gh-pages": "^5.0.0",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -36,6 +40,8 @@
     "eject": "react-scripts eject",
     "storybook-debug": "start-storybook -p 9009 -s public --no-dll",
     "storybook": "start-storybook -p 9009 -s public",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build-storybook": "build-storybook -s public",
     "jest:integration": "jest -c integration/jest.config.js",
     "test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration"
